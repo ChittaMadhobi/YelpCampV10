@@ -1,6 +1,4 @@
 // All the middleware goes here.
-
-
 var middlewareObj = {};
 
 middlewareObj.checkCampgroundOwnership = function (req, res, next) {
@@ -20,26 +18,25 @@ middlewareObj.checkCampgroundOwnership = function (req, res, next) {
 }
 
 
-
-
-/* middlewareObj.checkCommentOwnership = function (req, res, next) {
-    if (req.isAuthenticated()){
+middlewareObj.checkCommentOwnership = function (req, res, next) {
+    if(req.isAuthenticated()){
         Comment.findById(req.params.comment_id, function(err, foundComment){
-            if(err){
-                console.log('Comment.findById Err: ' + err);
-                res.redirect('back');
+            if(err) {
+                console.log('Comment.findById:' + err);
+                res.redirect('back');                
             } else {
-                console.log('foundComment.author.id='+foundComment.author.id + ' | req.user._id=' +req.user._id);
-                if(foundComment.author.id.equals(req.user._id)){
+                if (foundComment.author.id.equals(req.user._id)){
                     next();
                 } else {
                     res.redirect('back');
                 }
-        });
+            }
+        })
     } else {
-       res.redirect('back'); 
+        res.redirect('back');
     }
-}  */
+}
+
 
 middlewareObj.isLoggedIn = function(req, res, next) {
     if (req.isAuthenticated()){
